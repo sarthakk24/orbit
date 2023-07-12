@@ -2,8 +2,8 @@ import { Router } from 'express'
 import { handleCreate } from './controllers/create.service'
 import { isAdmin, validateJWT } from '../../middleware/jwt.service'
 
-const questionRoutes = Router()
+const problemRoutes = Router()
 
-questionRoutes.post('/create', validateJWT, isAdmin, handleCreate)
+problemRoutes.post('/create', validateJWT, isAdmin, handleCreate)
 
-export default questionRoutes
+export default problemRoutes
