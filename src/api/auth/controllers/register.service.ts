@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import Logger from '../../loaders/logger'
+import Logger from '../../../loaders/logger'
 
 export const handleRegister = async (
     req: Request,
