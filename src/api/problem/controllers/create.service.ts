@@ -43,7 +43,7 @@ export const handleCreate = async (
 
         res.status(201).json({
             success: true,
-            message: 'Question added successful',
+            message: 'Problem added successful',
             ...data,
             _id: insertedId,
         })
