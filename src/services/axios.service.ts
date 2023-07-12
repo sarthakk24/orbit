@@ -1,12 +1,12 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, { type AxiosResponse } from 'axios'
 import config from '../config'
 import Logger from '../loaders/logger'
 
-const compileInstance = axios.create({
+export const compileInstance = axios.create({
     baseURL: config.sphere.urls.compile,
 })
 
-const problemInstance = axios.create({
+export const problemInstance = axios.create({
     baseURL: config.sphere.urls.problem,
 })
 

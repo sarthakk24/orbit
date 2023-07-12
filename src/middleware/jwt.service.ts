@@ -19,8 +19,18 @@ export const validateJWT = async (
         }
         await yupJwtHeader.validate(req.headers, { abortEarly: false })
         const authToken = authorization.split(' ')[1]
-        const decoded = JSON.stringify(verify(authToken, config.jwtSecret))
-        req.user = JSON.parse(decoded)
+        const decoded = verify(authToken, config.jwtSecret)
+        const { role }: any = decoded
+
+        if (role !== 'admin' && role !== 'user') {
+            return next({
+                statusCode: 403,
+                message: 'Unauthorized',
+            })
+        }
+
+        const stringed = JSON.stringify(decoded)
+        req.user = JSON.parse(stringed)
         next()
     } catch (err: Error | any) {
         Logger.error(err)
