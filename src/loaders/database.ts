@@ -43,7 +43,7 @@ export class DBInstance {
         DBName?: string
     ): Promise<Collection> => {
         try {
-            DBInstance.db = DBInstance.mongoClient.db(DBName || 'htbsrmist')
+            DBInstance.db = DBInstance.mongoClient.db(DBName)
             return DBInstance.db.collection(CollName)
         } catch (err) {
             console.error('❌ Could not change the collection\n%o', err)
