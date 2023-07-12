@@ -12,6 +12,16 @@ export default {
     logs: {
         level: process.env.LOG_LEVEL || 'silly', // Logger Level
     },
+    sphere: {
+        urls: {
+            problem: `https://${process.env.SPHERE_ACCOUNT_ID}.problems.sphere-engine.com/api/v4`,
+            compile: `https://${process.env.SPHERE_ACCOUNT_ID}.compilers.sphere-engine.com/api/v4`,
+        },
+        tokens: {
+            problem: process.env.SPHERE_PROBLEM_API_KEY,
+            compile: process.env.SPHERE_COMPILERS_API_KEY,
+        },
+    },
     api: {
         prefix: '/api', // API Prefix
     },
