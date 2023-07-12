@@ -4,13 +4,14 @@ import { problemInstance } from '../../../services/axios.service'
 import config from '../../../config'
 import { DBInstance } from '../../../loaders/database'
 
-export const handleDelete = async (
+export const handleUpdate = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     try {
         const { id } = req.params
+        const data = req.body
         const problemId = parseInt(id as string)
 
         const DB = await DBInstance.getInstance()
@@ -27,13 +28,17 @@ export const handleDelete = async (
             }
         }
 
-        await problemInstance.delete(
-            `/problems/${id}?access_token=${config.sphere.tokens.problem}`
+        await problemInstance.put(
+            `/problems/${id}?access_token=${config.sphere.tokens.problem}`,
+            { ...data }
         )
 
-        await problemCollection.deleteOne({
-            id: problemId,
-        })
+        await problemCollection.updateOne(
+            {
+                id: problemId,
+            },
+            { $set: { ...data } }
+        )
 
         res.status(201).json({
             success: true,

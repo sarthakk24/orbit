@@ -32,6 +32,9 @@ export const handleCreate = async (
 
         const problem = {
             ...data,
+            name,
+            description,
+            type,
             createdAt: new Date(),
             updatedAt: new Date(),
         }
