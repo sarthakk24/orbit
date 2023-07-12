@@ -3,7 +3,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 export default {
     port: parseInt(process.env.PORT) || 5050, // PORT
-    dbURL: process.env.MONGODB_URI, // Mongo URI
+    dbURL: process.env.MONGODB_URI || 'mongodb://localhost:27017/', // Mongo URI
     dbName: process.env.MONGODB_NAME, // Database Name
     jwtSecret: process.env.JWT_SECRET, // JWT Secret
     awsID: process.env.AWS_ACCESS_KEY_ID, // AWS Access Key
