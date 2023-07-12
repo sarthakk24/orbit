@@ -46,7 +46,6 @@ export const handleLogin = async (
             email,
             token,
         })
-        next()
     } catch (err) {
         Logger.error(err)
         res.status(err.status || 500).json({
