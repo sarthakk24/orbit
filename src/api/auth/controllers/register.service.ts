@@ -12,6 +12,19 @@ export const handleRegister = async (
 ) => {
     try {
         const { name, email, password, role } = req.body
+
+        const DB = await DBInstance.getInstance()
+        const userCollection = await DB.getCollection('user')
+
+        const userExists = await userCollection.findOne({ email })
+
+        if (userExists) {
+            throw {
+                status: 409,
+                message: 'User already exists',
+            }
+        }
+
         const hash = await hashed_password(password)
 
         const user = {
@@ -23,16 +36,7 @@ export const handleRegister = async (
             updated_at: new Date(),
         }
 
-        const DB = await DBInstance.getInstance()
-        let insertedId: ObjectId
-        role === 'admin'
-            ? ({ insertedId } = await (
-                  await DB.getCollection('admin')
-              ).insertOne(user))
-            : ({ insertedId } = await (
-                  await DB.getCollection('user')
-              ).insertOne(user))
-
+        const { insertedId } = await userCollection.insertOne(user)
         const payload = {
             name,
             email,
