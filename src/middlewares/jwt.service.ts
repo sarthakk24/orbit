@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
-import { JwtPayload, verify } from 'jsonwebtoken'
+import { verify } from 'jsonwebtoken'
 import config from '../config/index'
 import { yupJwtHeader, JwtHeader } from '../models/middlewareSchema'
+import Logger from '../loaders/logger'
 
 export const validateJWT = async (
     req: Request,
@@ -19,9 +20,10 @@ export const validateJWT = async (
         await yupJwtHeader.validate(req.headers, { abortEarly: false })
         const authToken = authorization.split(' ')[1]
         const decoded = verify(authToken, config.jwtSecret)
-        console.log(decoded)
+        req.user = decoded
         next()
     } catch (err: Error | any) {
+        Logger.error(err)
         if (err.name === 'ValidationError') {
             let message: string = ''
             err.errors.forEach((error: string) => {
