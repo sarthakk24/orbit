@@ -19,8 +19,8 @@ export const validateJWT = async (
         }
         await yupJwtHeader.validate(req.headers, { abortEarly: false })
         const authToken = authorization.split(' ')[1]
-        const decoded = verify(authToken, config.jwtSecret)
-        req.user = decoded
+        const decoded = JSON.stringify(verify(authToken, config.jwtSecret))
+        req.user = JSON.parse(decoded)
         next()
     } catch (err: Error | any) {
         Logger.error(err)
@@ -34,6 +34,29 @@ export const validateJWT = async (
                 message: message,
             })
         }
+        next({
+            statusCode: 403,
+            message: `${err.name}: ${err.message}`,
+        })
+    }
+}
+
+export const isAdmin = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { role } = req.user
+        if (role !== 'admin') {
+            return next({
+                statusCode: 403,
+                message: 'Unauthorized',
+            })
+        }
+        next()
+    } catch (err: Error | any) {
+        Logger.error(err)
         next({
             statusCode: 403,
             message: `${err.name}: ${err.message}`,
