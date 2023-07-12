@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import Logger from '../../loaders/logger'
 
-export const login = async (
+export const handleLogin = async (
     req: Request,
     res: Response,
     next: NextFunction

@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express'
 import Logger from '../../loaders/logger'
 
-export const register = async (
+export const handleRegister = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     try {
-        res.status(200).json({
+        res.status(201).json({
             success: true,
             message: 'Registration successful',
         })
