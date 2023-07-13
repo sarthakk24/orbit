@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt'
 import Logger from '../loaders/logger'
+import { promisify } from 'util'
 
 export const hashed_password = async (password: string): Promise<string> => {
     try {
@@ -11,3 +12,5 @@ export const hashed_password = async (password: string): Promise<string> => {
         throw error
     }
 }
+
+export const sleep = promisify(setTimeout)
