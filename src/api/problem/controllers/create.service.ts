@@ -11,7 +11,7 @@ export const handleCreate = async (
     next: NextFunction
 ) => {
     try {
-        let { name, description, type, masterjudgeId } = req.body
+        let { name, description, type, masterjudgeId, interactive } = req.body
 
         if (!masterjudgeId) {
             masterjudgeId = 1000
@@ -21,9 +21,10 @@ export const handleCreate = async (
             `/problems?access_token=${config.sphere.tokens.problem}`,
             {
                 name,
-                description,
+                body: description,
                 typeId: type,
                 masterjudgeId,
+                interactive,
             }
         )
 
@@ -33,7 +34,8 @@ export const handleCreate = async (
         const problem = {
             ...data,
             name,
-            description,
+            body: description,
+            interactive,
             type,
             createdAt: new Date(),
             updatedAt: new Date(),

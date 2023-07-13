@@ -10,3 +10,5 @@ export const yupJwtHeader = yup.object({
 })
 
 export type JwtHeader = yup.InferType<typeof yupJwtHeader>
+
+export type RequestLocations = 'query' | 'body' | 'params' | 'headers' | 'files'
