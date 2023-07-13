@@ -22,7 +22,7 @@ export const validateJWT = async (
         const decoded = verify(authToken, config.jwtSecret)
         const { role }: any = decoded
 
-        if (role !== 'admin' && role !== 'user') {
+        if (role !== 'admin' && role !== 'participant') {
             return next({
                 statusCode: 403,
                 message: 'Unauthorized',

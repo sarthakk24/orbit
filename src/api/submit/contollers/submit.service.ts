@@ -5,6 +5,7 @@ import { problemInstance } from '../../../services/axios'
 import config from '../../../config'
 import { DBInstance } from '../../../loaders/database'
 import { sleep } from '../../../services/universal.service'
+import sendEmail from '../../../services/ses'
 
 export const handleSubmit = async (
     req: Request,
@@ -56,7 +57,7 @@ export const handleSubmit = async (
                 )
             ).data
         }
-        Logger.silly(JSON.stringify(submitRes))
+
         const output = {
             problem: submitRes.problem.name,
             status: {
@@ -86,6 +87,21 @@ export const handleSubmit = async (
                   })
                 : [],
         }
+
+        const emailData = {
+            email: req.user.email,
+            name: req.user.name,
+            problemName: submitRes.problem.name,
+            status: submitRes.result.status.name,
+            score: submitRes.result.score,
+            time: submitRes.result.time,
+            memory: submitRes.result.memory,
+            compilerName: submitRes.compiler.name,
+            compilerVersion: submitRes.compiler.version.name,
+            date: submitRes.date,
+        }
+        const { status } = await sendEmail(emailData)
+        status ? (output['emailSent'] = true) : (output['emailSent'] = false)
 
         res.status(201).json({
             success: true,
