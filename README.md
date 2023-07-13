@@ -68,7 +68,7 @@ Orbit Problems is a web application built using Node.js, TypeScript, and Express
 
 4. Start the server::
     ```bash
-    yarn start
+    yarn start | npm run start
     ```
 
 ### To start the project locally without Docker:
