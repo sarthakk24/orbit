@@ -4,7 +4,7 @@ import config from '../config'
 export const generateJWT = (payload: any): string => {
     const today = new Date()
     const expirationDate = new Date(today)
-    expirationDate.setDate(today.getDate() + 60)
+    expirationDate.setDate(today.getDate() + 1)
     return sign(
         <JwtPayload>{
             ...payload,

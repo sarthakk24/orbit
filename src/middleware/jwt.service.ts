@@ -4,6 +4,7 @@ import config from '../config/index'
 import { yupJwtHeader, JwtHeader } from '../models/middlewareSchema'
 import Logger from '../loaders/logger'
 
+// used for validating JWT token
 export const validateJWT = async (
     req: Request,
     res: Response,
@@ -51,6 +52,7 @@ export const validateJWT = async (
     }
 }
 
+// For differentiating between admin and participant
 export const isAdmin = async (
     req: Request,
     res: Response,

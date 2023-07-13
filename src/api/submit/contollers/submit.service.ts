@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import Logger from '../../../loaders/logger'
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 import { problemInstance } from '../../../services/axios'
 import config from '../../../config'
 import { DBInstance } from '../../../loaders/database'
@@ -42,6 +42,7 @@ export const handleSubmit = async (
             }
         )
 
+        // Making first status request to problem
         await sleep(2000)
         let submitRes = (
             await problemInstance.get(
@@ -49,6 +50,7 @@ export const handleSubmit = async (
             )
         ).data
 
+        // Making status request until execution is finished in interval of 2 seconds
         while (submitRes.executing === true) {
             await sleep(2000)
             submitRes = (

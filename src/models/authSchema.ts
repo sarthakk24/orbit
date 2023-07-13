@@ -5,8 +5,6 @@ export const yupLoginSchema = yup.object({
     password: yup.string().required().trim(),
 })
 
-export type LoginSchema = yup.InferType<typeof yupLoginSchema>
-
 export const yupRegisterSchema = yup.object({
     name: yup.string().required().trim(),
     email: yup.string().email().required().trim(),
@@ -19,5 +17,3 @@ export const yupRegisterSchema = yup.object({
         .required()
         .trim(),
 })
-
-export type RegisterSchema = yup.InferType<typeof yupRegisterSchema>
