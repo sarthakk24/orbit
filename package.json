@@ -21,6 +21,7 @@
         "typescript": "^4.9.4"
     },
     "dependencies": {
+        "@aws-sdk/client-ses": "^3.369.0",
         "axios": "^1.4.0",
         "bcrypt": "^5.1.0",
         "cors": "^2.8.5",

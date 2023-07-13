@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express'
 import os from 'os'
-import { testSphere } from '../services/axios.service'
+import { testSphere } from '../services/axios'
 import Logger from '../loaders/logger'
 
 const healthCheckRoute = Router()

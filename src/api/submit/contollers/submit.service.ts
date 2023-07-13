@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import Logger from '../../../loaders/logger'
 import axios, { AxiosResponse } from 'axios'
-import { problemInstance } from '../../../services/axios.service'
+import { problemInstance } from '../../../services/axios'
 import config from '../../../config'
 import { DBInstance } from '../../../loaders/database'
 import { sleep } from '../../../services/universal.service'

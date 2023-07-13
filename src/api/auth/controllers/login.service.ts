@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt'
 
 import Logger from '../../../loaders/logger'
 import { DBInstance } from '../../../loaders/database'
-import { generateJWT } from '../../../services/jwt.service'
+import { generateJWT } from '../../../services/jwt'
 
 export const handleLogin = async (
     req: Request,

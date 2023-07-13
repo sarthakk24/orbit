@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import Logger from '../../../loaders/logger'
 import { hashed_password } from '../../../services/universal.service'
 import { DBInstance } from '../../../loaders/database'
-import { generateJWT } from '../../../services/jwt.service'
+import { generateJWT } from '../../../services/jwt'
 import { ObjectId } from 'mongodb'
 
 export const handleRegister = async (

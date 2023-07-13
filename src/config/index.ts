@@ -9,6 +9,8 @@ export default {
     awsID: process.env.AWS_ACCESS_KEY_ID, // AWS Access Key
     awsKey: process.env.AWS_SECRET_ACCESS_KEY, // AWS Secret Access Key
     awsRegion: process.env.AWS_DEFAULT_REGION, // AWS Region
+    from: process.env.EMAIL_FROM, // Email From
+    replyTo: process.env.EMAIL_REPLY_TO, // Email Reply To
     logs: {
         level: process.env.LOG_LEVEL || 'silly', // Logger Level
     },
