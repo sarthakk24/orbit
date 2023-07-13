@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Orbit Problems is a web application built using Node.js, TypeScript, and Express framework. It provides a platform for hosting and solving coding problems related to orbital mechanics. The application allows users to register, login, solve coding problems, and track their progress.
+Orbit Problems is a web application built using Node.js, TypeScript, and Express framework. It provides a platform for hosting and solving coding problems related. The application allows users to register, login, solve coding problems, and track their progress.
 
 ## Submission Files
 
