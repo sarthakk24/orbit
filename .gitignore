@@ -131,7 +131,6 @@ dist
 .pnp.*
 .vscode/symbols.json
 src/static/temp/*
-.env*
 .flaskenv*
 !.env.project
 !.env.vault
